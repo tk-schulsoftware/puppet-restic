@@ -201,6 +201,7 @@ define restic::repository (
   if $_init_repo {
     exec { "restic_init_${title}":
       command     => "${_binary} init",
+      user        => 'root',
       # TODO: Make environment a Sensitive data type as well. But this is currently not supported by Puppet
       # https://github.com/puppetlabs/puppet/blob/f4781e349d0089061d05f1e8e6e3c3d44a7e1e04/lib/puppet/type/exec.rb#L692
       environment => $type_config.reduce([]) |$memo,$item| { $memo + "${item[0]}=${item[1].unwrap}" }.sort,
