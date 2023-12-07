@@ -191,10 +191,12 @@ define restic::repository (
       'AWS_SECRET_ACCESS_KEY' => $_key,
       'RESTIC_PASSWORD'       => $_password,
       'RESTIC_REPOSITORY'     => $repository,
+      'HOME'                  => '/root',
     },
     default => {
       'RESTIC_PASSWORD'   => $_password,
       'RESTIC_REPOSITORY' => $repository,
+      'HOME'              => '/root',
     },
   }
 
