@@ -179,9 +179,16 @@ define restic::repository (
     default => undef,
   }
 
-  $repository    = $_bucket ? {
-    undef   => "${_type}:${_host.unwrap}",
-    default => "${_type}:${_host.unwrap}/${_bucket}",
+  if $_type == 's3' {
+    $repository    = $_bucket ? {
+      undef   => "${_type}:${_host.unwrap}",
+      default => "${_type}:${_host.unwrap}/${_bucket}",
+    }
+  } else {
+    $repository    = $_bucket ? {
+      undef   => "${_type}:${_host.unwrap}",
+      default => "${_type}:${_host.unwrap}${_bucket}",
+    }
   }
 
   $config_file   = "/etc/default/restic_${title}"
