@@ -3,3 +3,6 @@
 | -%>
 [Timer]
 OnCalendar=<%= $timer %>
+
+[Install]
+WantedBy=timers.target
